@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Model checkpoints & large files
+ckpt-*/
+*.pkl
+*.h5
+*.pt
+*.pth
+
+# Large data files (>100MB, cannot upload to GitHub without LFS)
+data/extra-rdkit/train-rdkitfeature-Product.json
+data/full_database.xml
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+*.env

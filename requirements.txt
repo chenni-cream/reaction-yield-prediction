@@ -1,0 +1,16 @@
+numpy
+pandas
+scipy
+scikit-learn
+lightgbm
+xgboost
+catboost
+rdkit
+morfeus-ml
+psikit
+optuna
+shap
+matplotlib
+tqdm
+networkx
+skfp
