@@ -4,25 +4,7 @@
   LightGBM. This framework integrates molecular fingerprints, RDKit descriptors, quantum mechanical (QM)        
   descriptors, and solvent properties to predict yields across 8 types of catalytic reactions.                  
                                                                                                                 
-  ## Project Structure                                      
-                                                                                                                
-  ├── data/                          # Datasets and pre-computed features
-  ├── feature_generation/            # Feature extraction scripts                                               
-  │   ├── psikit_qmdesc.py           #   QM descriptors (SCF energy, HOMO/LUMO, dipole)                         
-  │   ├── mordred_gen.py             #   RDKit molecular descriptors                                            
-  │   ├── morfeus_qmdesc.py          #   Morfeus QM descriptors (dispersion, SASA, XTB)                         
-  │   ├── morfeus_atom_rx1.py        #   Atom-level TSEI descriptors                                            
-  │   └── utils/                     #   TSEI, mol_utils, Sterimol                                              
-  │                                                                                                             
-  ├── model_training/                # Model training & evaluation (by experimental stage)                      
-  │   ├── 1_model_selection/         #   Stage 1: Model comparison (RF/XGB/CatBoost/LGBM)                       
-  │   ├── 2_fingerprint_comparison/  #   Stage 2: Fingerprint type comparison                                   
-  │   ├── 3_feature_fusion_ablation/ #   Stage 3: Feature fusion & ablation study                               
-  │   ├── 4_optimization/            #   Stage 4: Optuna tuning & feature selection                             
-  │   ├── 5_ensemble_shap/           #   Stage 5: Ensemble model & SHAP analysis                                
-  │   └── 6_test_evaluation/         #   Stage 6: Test set evaluation                                           
-  │                                                                                                             
-  └── notebooks/                     # EDA, preprocessing, and visualization notebooks                          
+                    
                                                                                                                 
   ## Features                                                                                                   
                                                                                                                 
@@ -48,7 +30,6 @@
   morfeus-ml                                                                                                    
   psikit                                                    
   optuna                                                                                                        
-  shap
   matplotlib                                                                                                    
   tqdm                                                      
   networkx
