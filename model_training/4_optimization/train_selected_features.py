@@ -1,10 +1,8 @@
-# LightGBM: 使用筛选后的特征进行融合训练
-# 基于 feature_selection_analysis.py 选出的 327 维特征
-# LayeredFingerprint + Extra-RDKit + 溶剂描述符 + 分子级 QC 融合训练
-# 按 rxntype 分类，五折交叉验证
-# 溶剂描述符来自 solvents/、drugbank/、MNSol 三源合并（去重 31 维）
-# QC 描述符来自 qm_desc-morfeus（round2）和 qm_desc-morfeus-round1（每分子列 10 维，共 50 维）
-# 混合溶剂按 '.' 拆分后分别查表取平均
+# LightGBM: Conducting fusion training using the selected features
+# Based on the 327-dimensional features selected by feature_selection_analysis.py
+# LayeredFingerprint + Extra-RDKit + Solvent descriptors + Molecular-level QC fusion training
+# Classified by rxntype, using 5-fold cross-validation
+# For mixed solvents, splitting by '.' and averaging from the table
 import gzip
 from pathlib import Path
 from time import perf_counter
