@@ -28,32 +28,13 @@
                                                                                                                 
   Four categories of molecular features are fused at the reaction level:                                        
                                                                                                                 
-  | Feature Type | Description | Dimensions per molecule |                                                      
-  |---|---|---|                                             
-  | Molecular Fingerprint | Avalon / ECFP4 / Layered Fingerprint | 2048-bit |                                   
-  | RDKit Descriptors | Physicochemical properties (MW, LogP, TPSA, etc.) | 210 |                               
-  | QM Descriptors | Dispersion, SASA, XTB electronic parameters | 10 |                                         
+  | Feature Type | Description                                                                                               
+  | Molecular Fingerprint | Avalon / ECFP4 / Layered Fingerprint |                               
+  | RDKit Descriptors | Physicochemical properties (MW, LogP, TPSA, etc.) |                              
+  | QM Descriptors | Dispersion, SASA, XTB electronic parameters |                                         
   | Solvent Properties | Physical constants, MNSol parameters, DrugBank attributes | 31 |                       
                                                                                                                 
-  Each reaction is represented by concatenating features of all 5 molecular components (Reactant1, Reactant2,   
-  Product, Additive, Solvent).                                                                                  
-                                                                                                                
-  ## Workflow                                                                                                   
-   
-  Stage 1 → Stage 2 → Stage 3 → Stage 4 → Stage 5 → Stage 6                                                     
-  Model       Finger-     Feature     Hyper-      Ensemble    Test
-  Selection   print       Fusion &    parameter   & SHAP      Evaluation                                        
-              Comparison  Ablation    Tuning                                                                    
-                                                                                                                
-  1. **Model Selection**: Compare RF, XGBoost, CatBoost, and LightGBM with molecular fingerprints → LightGBM    
-  selected                                                                                                      
-  2. **Fingerprint Comparison**: Evaluate Avalon, ECFP4, Layered, MACCS, and other fingerprints → Layered
-  Fingerprint selected                                                                                          
-  3. **Feature Fusion & Ablation**: Incrementally add RDKit → Solvent → QM descriptors with Top-K feature
-  ablation                                                                                                      
-  4. **Optimization**: Optuna-based hyperparameter tuning and feature importance-based selection
-  5. **Ensemble & SHAP**: Three-model weighted ensemble with SHAP-based interpretability analysis               
-  6. **Test Evaluation**: Generalization validation on held-out test sets                                       
+  Each reaction is represented by concatenating features of all 5 molecular components (Reactant1, Reactant2, Product, Additive, Solvent).                                                                                                                                                                                                                     
                                                                                                                 
   ## Requirements                                                                                               
                                                                                                                 
