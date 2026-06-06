@@ -1,6 +1,6 @@
-# LightGBM: 纯 RDKit 描述符基线
-# 按 rxntype 分类，五折交叉验证
-# 仅使用 extra-rdkit 特征，不拼接任何指纹
+# LightGBM: Pure RDKit Descriptor Baseline
+# Classified by rxntype, 5-fold cross-validation
+# Only uses extra-rdkit features, no concatenation of any fingerprints
 import gzip
 from pathlib import Path
 from time import perf_counter
