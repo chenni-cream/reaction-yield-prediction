@@ -1,6 +1,6 @@
-# Avalon FP + Top-K RDKit 特征训练 & 模型保存
-# 基于消融实验结论: Top-500 RDKit 特征为全局最优配置
-# 对每个 rxntype: 获取 importance -> 选 Top-500 RDKit -> 5 折训练 -> 保存模型
+# Avalon FP + Top-K RDKit Feature Training & Model Saving
+# Based on the conclusion of the ablation experiment: The Top-500 RDKit features represent the global optimal configuration
+# For each rxntype: Obtain importance -> Select Top-500 RDKit features -> 5-fold training -> Save the model
 import gzip
 from pathlib import Path
 from time import perf_counter
