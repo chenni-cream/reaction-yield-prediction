@@ -1,6 +1,6 @@
-# 使用 RF / XGB / CatBoost / LGBM 模型进行基线对比
-# 使用 LayeredFingerprint 对 round1+round2 数据按 rxntype 分类训练
-# 五折交叉验证，得到每一反应类型的评估结果
+# Conduct baseline comparison using RF / XGB / CatBoost / LGBM models
+# Train the data for round1 + round2 according to rxntype using LayeredFingerprint
+# Perform five-fold cross-validation to obtain the evaluation results for each reaction type
 import warnings
 from pathlib import Path
 from time import perf_counter
