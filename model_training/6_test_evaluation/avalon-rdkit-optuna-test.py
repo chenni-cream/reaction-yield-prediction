@@ -1,7 +1,6 @@
 """
 avalon-rdkit-optuna-test.py
-使用 Optuna 调优的 Avalon + Top-500 RDKit 融合模型对 round1 / round2 测试集进行泛化性验证。
-模型来源: All-reactions/ckpt-optuna/Avalon_RDKit/rxn_{type}/lgbm_fold{i}.txt
+The generalized validation of the Avalon + Top-500 RDKit fusion model tuned using Optuna was conducted on the round1 / round2 test set.
 """
 
 import json
