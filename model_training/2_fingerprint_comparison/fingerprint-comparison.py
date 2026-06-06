@@ -1,4 +1,4 @@
-# 在 round1 + round2 训练集上，按 rxntype 分组比较多种分子指纹 + LGBM 表现。
+# On the training set of round1 + round2, compare the performance of various molecular fingerprints + LGBM by grouping them according to rxntype.
 import warnings
 from pathlib import Path
 from time import perf_counter
