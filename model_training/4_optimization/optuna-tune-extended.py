@@ -1,12 +1,11 @@
-# Optuna 超参调优：对两个扩展特征配置独立调参
-# 配置 B: Avalon FP + Top-500 RDKit
-# 配置 C: Layered FP + Top-500 NonFP (RDKit + QC + Solvent)
-# 基线配置 A (Avalon FP) 使用已优化的固定参数，不参与调参
-#
-# 流程:
-#   1. 用基线参数获取 feature importance → 选出 Top-500 特征
-#   2. Optuna 搜索最优超参 (50 trials per rxntype × config)
-#   3. 最优参数 5 折训练 → 保存模型 + OOF 预测
+# Optuna Hyperparameter Tuning: Independently adjust parameters for two extended feature configurations
+# Configuration B: Avalon FP + Top-500 RDKit
+# Configuration C: Layered FP + Top-500 NonFP (RDKit + QC + Solvent)
+# Baseline configuration A (Avalon FP) uses already optimized fixed parameters and does not participate in the tuning process #
+# Process:
+#   1. Obtain feature importance using baseline parameters → Select the top 500 features
+#   2. Optuna searches for the optimal hyperparameters (50 trials per response type × configuration)
+#   3. Train with the optimal parameters using 5-fold cross-validation → Save the model + OOF predictions
 import gzip
 import json
 from pathlib import Path
