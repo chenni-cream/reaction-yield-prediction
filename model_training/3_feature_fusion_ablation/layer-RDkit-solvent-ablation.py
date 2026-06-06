@@ -1,7 +1,7 @@
-# LayeredFingerprint + RDKit + Solvent 消融实验
-# 全量 LayeredFingerprint+RDKit+Solvent 训练，然后按 LightGBM importance 选 Top-K 非指纹特征
-# Layered 始终保留，仅对 RDKit+Solvent 做消融
-# 按 rxntype 分类，五折交叉验证，选择 8 个 rxntype 平均 R2 最优的全局 K 并保存最优 K 模型
+# LayeredFingerprint + RDKit + Solvent Ablation Experiment
+# Train with LayeredFingerprint + RDKit + Solvent, then select the Top-K non-fingerprint features based on LightGBM importance
+# Layered is always retained, and only RDKit + Solvent is subjected to ablation
+# Classify by rxntype, conduct five-fold cross-validation, select the global K with the optimal average R2 of 8 rxntypes and save the optimal K model
 import gzip
 import json
 from pathlib import Path
