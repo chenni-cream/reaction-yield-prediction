@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
 ensemble-weighted.py
-三模型加权集成预测 (Optuna 调优版)
-
+ensemble-weighted.py
+Three-model weighted ensemble prediction (Optuna-tuned version) 
 Model A: Avalon FP                          (ckpt-searchfp/AvalonFingerprint_lgbm + OOF from ckpt-optuna/Avalon_FP)
 Model B: Avalon FP + Top-500 RDKit           (ckpt-optuna/Avalon_RDKit)
 Model C: Layered FP + Top-500 NonFP           (ckpt-optuna/Layered_RDKit_QC_Solvent)
 
-Step 1: 加载已保存的 OOF 预测
-Step 2: 按 rxntype 优化集成权重 (scipy.optimize)
-Step 3: 在测试集上预测并评估
+Step 1: Load the previously saved OOF predictions
+Step 2: Optimize the integration weights based on rxntype using scipy.optimize
+Step 3: Make predictions and evaluate on the test set
 """
 import gzip
 import json
