@@ -1,8 +1,7 @@
 # Test-Layer-RDKit.py
-# 对测试集进行 Layered FP + RDKit 融合模型的推理与评估
-# 加载 ckpt-layered-rdkit-fusion 中保存的 5 折 LightGBM 模型，按 rxntype 分组预测
-# RDKit 特征从预生成的 gz 文件加载（先运行 generate_test_rdkit_gz.py）
-
+# Perform inference and evaluation on the test set using the Layered FP + RDKit fusion model
+# Load the 5-fold LightGBM model saved in ckpt-layered-rdkit-fusion and predict by grouping by rxntype
+# RDKit features are loaded from the pre-generated gz file (run generate_test_rdkit_gz.py first)
 import gzip
 from pathlib import Path
 from time import perf_counter
