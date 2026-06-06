@@ -1,7 +1,6 @@
 """
 testlayered.py
-使用按 rxntype 分类的 LightGBM 模型对 round1 / round2 测试集进行泛化性验证。
-模型来源: model_selection/ckpt-baseline-comparison/LightGBM/rxn_{type}/LightGBM_fold{i}.txt
+The generalization ability of the LightGBM model classified by rxntype was verified using the test sets of round1 and round2.
 """
 
 from pathlib import Path
