@@ -1,8 +1,8 @@
-# LightGBM: 纯描述符基线（RDKit + 溶剂 + QC，无指纹）
-# 按 rxntype 分类，五折交叉验证
-# 溶剂描述符来自 solvents/、drugbank/、MNSol 三源合并（去重 31 维）
-# QC 描述符来自 qm_desc-morfeus（round2）和 qm_desc-morfeus-round1（每分子列 10 维，共 50 维）
-# 混合溶剂按 '.' 拆分后分别查表取平均
+# LightGBM: Pure descriptor baseline (RDKit + Solvent + QC, without fingerprints)
+# Classified by rxntype, 5-fold cross-validation
+# Solvent descriptors are derived from three sources: solvents/, drugbank/, and MNSol (deduplicated to 31 dimensions)
+# QC descriptors come from qm_desc-morfeus (round2) and qm_desc-morfeus-round1 (10 dimensions per molecule, totaling 50 dimensions)
+# Mixed solvent is split by '.' and averaged from the tables
 import gzip
 from pathlib import Path
 from time import perf_counter
