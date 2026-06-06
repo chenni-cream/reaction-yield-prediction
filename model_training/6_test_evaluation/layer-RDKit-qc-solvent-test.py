@@ -1,8 +1,7 @@
 """
 layer-RDKit-qc-solvent-test.py
-使用按 rxntype 分类的 LightGBM 融合模型 (LayeredFingerprint + RDKit + QC + Solvent) 对 round1 / round2 测试集进行泛化性验证。
-模型来源: generalmodel/All-reactions/results/ablation_solvent_qc_best_k_training_params.json
-每个 rxntype 的 top-500 非指纹特征从对应的 feature_importance_full.csv 中读取。
+The LightGBM ensemble model classified by rxntype (LayeredFingerprint + RDKit + QC + Solvent) was used to conduct generalization verification on the round1 / round2 test sets.
+The top-500 non-fingerprint features of each rxntype were read from the corresponding feature_importance_full.csv file.
 """
 
 import gzip
