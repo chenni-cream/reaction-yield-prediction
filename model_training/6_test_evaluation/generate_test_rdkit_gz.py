@@ -1,15 +1,5 @@
 # generate_test_rdkit_gz.py
-# 生成测试集的 RDKit 特征 gz 文件，格式与 train-rdkitfeature-rxn{N}.gz 完全一致
-#
-# 查找策略（与训练集 gz 生成逻辑对齐）：
-#   Reactant1, Reactant2 → train-rdkitfeature-{col}.json
-#   Product              → train-rdkitfeature-Product.json（混合 SMILES 拆分取均值）
-#   Additive             → train-rdkitfeature-Additive-nosplit.json
-#   Solvent              → train-rdkitfeature-Solvent-nosplit.json
-# 查不到的 SMILES → CalcMolDescriptors 实时计算
-#
-# 用法: python generate_test_rdkit_gz.py
-# 输出: extra-rdkit/test-rdkitfeature-rxn{N}.gz
+# Generate the gz file of RDKit features for the test set, with the exact same format as train-rdkitfeature-rxn{N}.gz
 
 import gzip
 import json
