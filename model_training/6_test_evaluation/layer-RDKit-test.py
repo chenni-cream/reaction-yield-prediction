@@ -1,7 +1,6 @@
 """
 layer-RDKit-test.py
-使用按 rxntype 分类的 LightGBM 融合模型 (LayeredFingerprint + RDKit Descriptors) 对 round1 / round2 测试集进行泛化性验证。
-模型来源: All-reactions/ckpt-layered-rdkit-fusion/model_selection/fusion/rxn_{type}/lgbm_fusion_fold{i}.txt
+Use the LightGBM fusion model classified by rxntype (LayeredFingerprint + RDKit Descriptors) to conduct generalization verification on the round1 / round2 test set
 """
 
 import json
