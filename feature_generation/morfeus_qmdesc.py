@@ -9,7 +9,7 @@ from rdkit.Chem import AllChem
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import numpy as np
 import argparse
-#定义 morfeus_descriptors 函数，使用 morfeus 库计算分子的色散描述符、溶剂可及表面积描述符和 XTB 相关的电子参数。
+# Define the morfeus_descriptors function, which uses the morfeus library to calculate the dispersion descriptors, solvent-accessible surface area descriptors, and XTB-related electronic parameters of the molecule.
 os.environ['OMP_NUM_THREADS'] = "16"
 
 dataset_dir = '../data'   # Change this to your dataset directory
