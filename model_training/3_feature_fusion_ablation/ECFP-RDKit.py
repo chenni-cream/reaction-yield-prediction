@@ -1,6 +1,6 @@
-# LightGBM: ECFP4 Fingerprint + Extra-RDKit Descriptors 融合训练
-# 按 rxntype 分类，五折交叉验证
-# 与纯 ECFP4 FP 基线对比，评估 RDKit 特征带来的增益
+# LightGBM: ECFP4 Fingerprint + Extra-RDKit Descriptors Fusion Training
+# Classified by rxntype, 5-fold cross-validation
+# Compared with the pure ECFP4 FP baseline, evaluate the gains brought by RDKit features
 import gzip
 from pathlib import Path
 from time import perf_counter
