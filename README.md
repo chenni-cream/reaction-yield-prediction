@@ -31,7 +31,8 @@
   psikit                                                    
   optuna                                                                                                        
   matplotlib                                                                                                    
-  tqdm                                                      
+  tqdm
+  shap
   networkx
   skfp
 
