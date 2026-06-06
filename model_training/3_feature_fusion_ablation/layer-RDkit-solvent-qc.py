@@ -1,8 +1,7 @@
-# LightGBM: LayeredFingerprint + Extra-RDKit + 溶剂描述符 + 分子级 QC 融合训练
-# 按 rxntype 分类，五折交叉验证
-# 溶剂描述符来自 solvents/、drugbank/、MNSol 三源合并（去重 31 维）
-# QC 描述符来自 qm_desc-morfeus（round2）和 qm_desc-morfeus-round1（每分子列 10 维，共 50 维）
-# 混合溶剂按 '.' 拆分后分别查表取平均
+# LightGBM: LayeredFingerprint + Extra-RDKit + Solvent Descriptor + QC Fusion Training
+# Classified by rxntype, using 5-fold cross-validation
+# The solvent descriptor is derived from the combination of solvents/, drugbank/, and MNSol (with duplicates removed, resulting in 31 dimensions)
+# The mixed solvent is split by '.' and then averaged from the lookup table
 import gzip
 from pathlib import Path
 from time import perf_counter
