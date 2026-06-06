@@ -1,7 +1,6 @@
-# Optuna 超参调优: 配置 C 独立脚本
-# Layered FP + Top-500 NonFP (RDKit + QC + Solvent)
-# 与 optuna-tune-extended.py 并行运行，输出到同一目录
-# 只需 Layered 指纹，不需要 Avalon，节省内存
+# Optuna Hyperparameter Tuning: Configure C as an Independent Script # Layered FP + Top-500 NonFP (RDKit + QC + Solvent)
+# Run in parallel with optuna-tune-extended.py and output to the same directory
+# Only need Layered fingerprint, no Avalon required, saving memory
 import gzip
 import json
 import sys
