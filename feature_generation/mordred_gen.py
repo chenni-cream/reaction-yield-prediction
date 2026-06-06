@@ -8,7 +8,7 @@ from rdkit import RDLogger,Chem
 import numpy as np
 import os
 RDLogger.DisableLog('rdApp.*')
-#定义了 featurizers_rdkit 类，用于将 SMILES 字符串转换为分子描述符特征。针对每个反应类型（rxntype），对 Reactant1、Reactant2、Product、Additive、Solvent 列的 SMILES 字符串进行特征提取，并将这些特征按列拼接。
+# Defined the featurizers_rdkit class, which is used to convert SMILES strings into molecular descriptor features.
 
 dataset_dir = '../data'   # Change this to your dataset directory
 
