@@ -1,12 +1,8 @@
 """
-特征选择分析脚本
-================
-从8类反应的特征重要性CSV中，提取：
-1. 指纹类特征：各反应类型排名前50~100的关键片段
-2. QC/物理特征：在≥3类反应中出现的通用特征（即使排名到150也保留）
-3. 溶剂物理特征：在≥3类反应中出现的通用特征
-
-结果保存在当前目录下。
+Extract from the CSV file of the importance of features for 8 types of reactions:
+1. Fingerprint-like features: The key fragments ranked from the top 50 to 100 for each reaction type
+2. QC/physical features: General features that appear in ≥ 3 types of reactions (even if ranked up to 150, they are retained)
+3. Solvent physical features: General features that appear in ≥ 3 types of reactions 
 """
 
 import pandas as pd
