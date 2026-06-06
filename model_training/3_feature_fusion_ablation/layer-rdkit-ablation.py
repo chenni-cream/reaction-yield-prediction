@@ -1,6 +1,6 @@
-# LayeredFingerprint + RDKit 消融实验
-# 全量 LayeredFingerprint+RDKit 训练，然后按 LightGBM importance 选 Top-K RDKit 特征
-# 按 rxntype 分类，五折交叉验证，找到每个 rxntype 最优的 K 值
+# LayeredFingerprint + RDKit Abandonment Experiment
+# Train with the full set of LayeredFingerprint + RDKit, then select the Top-K RDKit features based on LightGBM importance
+# Classify by rxntype, conduct 5-fold cross-validation, and find the optimal K value for each rxntype
 import gzip
 from pathlib import Path
 from time import perf_counter
