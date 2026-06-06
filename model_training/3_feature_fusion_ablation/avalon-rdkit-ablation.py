@@ -1,6 +1,6 @@
-# Avalon + RDKit 消融实验
-# 全量 Avalon+RDKit 训练，然后按 LightGBM importance 选 Top-K RDKit 特征
-# 按 rxntype 分类，五折交叉验证，找到每个 rxntype 最优的 K 值
+# Avalon + RDKit Ablation Experiment
+# Full Avalon+RDKit training, then select the Top-K RDKit feature according to LightGBM importance
+# Classify by rxntype, conduct a 5 cross-validation, and find the optimal K value for each rxntype
 import gzip
 from pathlib import Path
 from time import perf_counter
