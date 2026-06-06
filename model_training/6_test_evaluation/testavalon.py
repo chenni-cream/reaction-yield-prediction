@@ -1,7 +1,6 @@
 """
 testavalon.py
-使用 Avalon 指纹 + LightGBM 模型对 round1 / round2 测试集进行泛化性验证。
-模型来源: model_selection/ckpt-avalon-fp-comparison/LightGBM/rxn_{type}/LightGBM_fold{i}.txt
+The generalization ability of the model was verified using the Avalon fingerprint and the LightGBM model on the round1 / round2 test sets.
 """
 
 from pathlib import Path
