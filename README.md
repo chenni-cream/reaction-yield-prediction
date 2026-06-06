@@ -14,7 +14,7 @@
   | Molecular Fingerprint | Avalon / ECFP4 / Layered Fingerprint |                               
   | RDKit Descriptors | Physicochemical properties (MW, LogP, TPSA, etc.) |                              
   | QM Descriptors | Dispersion, SASA, XTB electronic parameters |                                         
-  | Solvent Properties | Physical constants, MNSol parameters, DrugBank attributes | 31 |                       
+  | Solvent Properties | Physical constants, MNSol parameters, DrugBank attributes |                 
                                                                                                                 
   Each reaction is represented by concatenating features of all 5 molecular components (Reactant1, Reactant2, Product, Additive, Solvent).                                                                                                                                                                                                                     
                                                                                                                 
