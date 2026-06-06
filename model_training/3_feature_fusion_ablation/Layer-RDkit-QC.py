@@ -1,7 +1,6 @@
-# LightGBM: LayeredFingerprint + Extra-RDKit + QC 融合训练
-# 按 rxntype 分类，五折交叉验证
-# QC 描述符来自 qm_desc-morfeus（round2）和 qm_desc-morfeus-round1
-# round1 缺失的 Product QC 由 qm_desc-morfeus 中的 Product 补充
+# LightGBM: LayeredFingerprint + Extra-RDKit + QC Fusion Training
+# Classified by rxntype, using 5-fold cross-validation
+# QC descriptors come from qm_desc-morfeus (round2) and qm_desc-morfeus-round1
 import gzip
 from pathlib import Path
 from time import perf_counter
