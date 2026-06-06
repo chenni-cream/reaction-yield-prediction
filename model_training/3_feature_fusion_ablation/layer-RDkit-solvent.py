@@ -1,7 +1,7 @@
-# LightGBM: LayeredFingerprint + Extra-RDKit + 溶剂描述符 融合训练
-# 按 rxntype 分类，五折交叉验证
-# 溶剂描述符来自 solvents/、drugbank/、MNSol 三源合并（去重 32 维）
-# 混合溶剂按 '.' 拆分后分别查表取平均
+# LightGBM: LayeredFingerprint + Extra-RDKit + Solvent Descriptor Fusion Training
+# Classified by rxntype, using 5-fold cross-validation
+# The solvent descriptors are derived from three sources: solvents/, drugbank/, and MNSol (de-duplicated to 32 dimensions)
+# The mixed solvents are split by '.' and the average is taken from the tables respectively
 import gzip
 from pathlib import Path
 from time import perf_counter
