@@ -9,7 +9,6 @@ rdkit
 morfeus-ml
 psikit
 optuna
-shap
 matplotlib
 tqdm
 networkx
