@@ -263,6 +263,9 @@ def build_qc_lookup() -> dict[str, dict[str, np.ndarray]]:
         for qc_dir in qc_dirs:
             if not qc_dir.exists():
                 continue
+            # Round1 training data does not contain Product QC descriptors
+            if col == "Product" and qc_dir == DATASET_DIR / "qm_desc-morfeus-round1":
+                continue
             gz_path = qc_dir / filename
             if not gz_path.exists():
                 continue

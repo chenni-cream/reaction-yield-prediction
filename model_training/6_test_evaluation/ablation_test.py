@@ -127,6 +127,9 @@ def build_qc_lookup():
     for col, fn in fm.items():
         lk = {}
         for d in qd:
+            # Round1 training data does not contain Product QC descriptors
+            if col == "Product" and d == DD / "qm_desc-morfeus-round1":
+                continue
             p = d / fn
             if p.exists():
                 with gzip.open(p, "rt") as f: df_qc = pd.read_csv(f)

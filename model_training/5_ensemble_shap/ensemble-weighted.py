@@ -252,6 +252,8 @@ def build_qc_lookup(qc_dirs):
     for col, filename in file_map.items():
         lookup = {}
         for qc_dir in qc_dirs:
+            # Round1 training data does not contain Product QC descriptors;
+            # the file simply does not exist, so path.exists() handles this gracefully.
             path = qc_dir / filename
             if path.exists():
                 for _, row in load_qc_gz(path).iterrows():
