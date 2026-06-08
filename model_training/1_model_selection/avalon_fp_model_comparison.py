@@ -37,8 +37,6 @@ FP_SIZE = 2048
 
 
 # ──────────────────────────────────────
-# 指纹计算
-# ──────────────────────────────────────
 def bitvect_to_numpy(bitvect: DataStructs.ExplicitBitVect, n_bits: int) -> np.ndarray:
     arr = np.zeros((n_bits,), dtype=np.uint8)
     DataStructs.ConvertToNumpyArray(bitvect, arr)
@@ -69,9 +67,6 @@ def build_features(df: pd.DataFrame) -> np.ndarray:
     feats = [encode_smiles_column(df[col]) for col in MOLECULE_COLUMNS]
     return np.concatenate(feats, axis=1)
 
-
-# ──────────────────────────────────────
-# 模型配置（用户指定的 Optuna 调优参数）
 # ──────────────────────────────────────
 def get_models():
     """返回 (name, model_constructor) 列表"""
@@ -139,8 +134,6 @@ def get_models():
 
 
 # ──────────────────────────────────────
-# 训练与评估
-# ──────────────────────────────────────
 def evaluate_by_rxntype(
     rxn_df: pd.DataFrame,
     model_name: str,
@@ -182,7 +175,7 @@ def evaluate_by_rxntype(
 
         model = model_fn()
 
-        # 各模型 fit 方式不同
+       
         if model_name == "LightGBM":
             model.fit(
                 X_train,
@@ -215,7 +208,7 @@ def evaluate_by_rxntype(
             model, "best_iteration_", getattr(model, "best_iteration", -1)
         )
 
-        # 保存模型
+      
         if model_name == "LightGBM":
             model.booster_.save_model(str(rxn_dir / f"{model_name}_fold{fold}.txt"))
         elif model_name == "CatBoost":
@@ -263,8 +256,6 @@ def evaluate_by_rxntype(
 
 
 # ──────────────────────────────────────
-# 数据加载
-# ──────────────────────────────────────
 def load_train_data(dataset_dir: Path) -> pd.DataFrame:
     round1_path = dataset_dir / "round1_train_data.csv"
     round2_path = dataset_dir / "round2_train_data.csv"
@@ -297,8 +288,7 @@ def load_train_data(dataset_dir: Path) -> pd.DataFrame:
     return df
 
 
-# ──────────────────────────────────────
-# 主流程
+
 # ──────────────────────────────────────
 def main() -> None:
     script_dir = Path(__file__).resolve().parent
@@ -355,7 +345,7 @@ def main() -> None:
             except Exception as exc:
                 print(f"  [跳过] {model_name} | rxntype={rxntype} 失败: {exc}")
 
-        # 保存该模型的结果
+       
         fold_df = pd.DataFrame(fold_records)
         summary_df = pd.DataFrame(summary_records)
 
@@ -366,7 +356,7 @@ def main() -> None:
         all_fold_records.extend(fold_records)
         all_summary_records.extend(summary_records)
 
-    # 保存汇总结果
+   
     all_fold_df = pd.DataFrame(all_fold_records)
     all_summary_df = pd.DataFrame(all_summary_records)
     results_dir = script_dir.parent / "results"
@@ -375,7 +365,7 @@ def main() -> None:
     all_fold_df.to_csv(results_dir / "avalon_all_models_fold_metrics.csv", index=False)
     all_summary_df.to_csv(results_dir / "avalon_all_models_summary_metrics.csv", index=False)
 
-    # 打印排名
+  
     print(f"\n{'='*80}")
     print("模型对比排名 (按 R2 降序)")
     print(f"{'='*80}")
@@ -393,7 +383,7 @@ def main() -> None:
             f"{row['r2_mean_pm_sd']:<34} {row['rmse_mean']:<12.6f} {row['mae_mean']:<12.6f}"
         )
 
-    # 各 rxntype 最佳模型
+   
     print(f"\n{'='*80}")
     print("各 rxntype 最佳模型")
     print(f"{'='*80}")
@@ -405,7 +395,7 @@ def main() -> None:
             f"(R2={best['r2_mean']:.6f}, RMSE={best['rmse_mean']:.6f})"
         )
 
-    # 各模型所有 rxntype 平均 R2
+   
     print(f"\n{'='*80}")
     print("各模型所有 rxntype 平均 R2")
     print(f"{'='*80}")
