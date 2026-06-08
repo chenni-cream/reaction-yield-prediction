@@ -59,12 +59,20 @@ python feature_generation/morfeus_qmdesc_round2_test.py --col 0
 ```bash
 # Stage 1: Model selection
 python model_training/1_model_selection/layered_fp_model_comparison.py
-
-# Stage 3: Full feature fusion (Layered FP + RDKit + Solvent + QC)
+python model_training/1_model_selection/avalon_fp_model_comparison.py
+# Stage 2: Full feature fusion
+python model_training/3_feature_fusion_ablation/Avalon-RDKit.py
+python model_training/3_feature_fusion_ablation/Layer-RDKit.py 
 python model_training/3_feature_fusion_ablation/layer-RDkit-solvent-qc.py
-
+# Stage 3: Feature ablation
+python model_training/3_feature_fusion_ablation/avalon-rdkit-ablation.py
+python model_training/3_feature_fusion_ablation/layer-RDkit-solvent-qc-ablation.py
 # Stage 4: Optuna hyperparameter tuning
 python model_training/4_optimization/optuna-tune-extended.py
+python model_training/4_optimization/optuna-tune-config-c.py
+# Stage 5: Ensemble model
+python model_training/5_ensemble_shap/ensemble-weighted.py
+
 ```
 
 ### Test Evaluation
