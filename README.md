@@ -70,8 +70,8 @@ python model_training/4_optimization/optuna-tune-extended.py
 ### Test Evaluation
 
 ```bash
-# Full model test evaluation
-python model_training/6_test_evaluation/layer-RDKit-qc-solvent-test.py
+# Ensemble model test evaluation
+python model_training/5_ensemble_shap/ensemble-weighted.py
 ```
 
 ## Data
