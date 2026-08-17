@@ -1,73 +1,45 @@
-from skfp.fingerprints import MACCSFingerprint, MordredFingerprint, EStateFingerprint, AutocorrFingerprint, GhoseCrippenFingerprint, MQNsFingerprint, LaggnerFingerprint
-from rdkit.Chem import Descriptors
-import pandas as pd
-from tqdm import tqdm
-from sklearn.ensemble import RandomForestRegressor
-from rdkit.Chem import rdMolDescriptors
-from rdkit import RDLogger,Chem
-import numpy as np
-import os
-import json
+#!/usr/bin/env python3
+"""Generate per-component RDKit descriptor lookup JSON files safely."""
+import argparse, json
+from pathlib import Path
+try:
+    from .common import (DEFAULT_DATA_DIR, MOLECULE_COLUMNS,
+                         calculate_manuscript_rdkit_descriptors,
+                         load_rdkit_descriptor_names, load_training_data,
+                         protected_outputs)
+except ImportError:
+    from common import (DEFAULT_DATA_DIR, MOLECULE_COLUMNS,
+                        calculate_manuscript_rdkit_descriptors,
+                        load_rdkit_descriptor_names, load_training_data,
+                        protected_outputs)
 
-RDLogger.DisableLog('rdApp.*')
+def parse_args():
+    parser=argparse.ArgumentParser()
+    parser.add_argument("--data-dir",type=Path,default=DEFAULT_DATA_DIR)
+    parser.add_argument("--output-dir",type=Path,default=DEFAULT_DATA_DIR/"extra-rdkit")
+    parser.add_argument("--column",choices=MOLECULE_COLUMNS,action="append",dest="columns")
+    parser.add_argument("--overwrite",action="store_true")
+    return parser.parse_args()
 
-class featurizers_rdkit():
-    def transform(self,smis):
-        features=[]
-        for smi in smis:
-            vals = Descriptors.CalcMolDescriptors(Chem.MolFromSmiles(smi))
-            features.append(list(vals.values()))
-        res = np.array(features)
-        return res.astype(float)
+def main():
+    from rdkit import Chem, RDLogger
+    RDLogger.DisableLog("rdApp.*")
+    args=parse_args(); columns=args.columns or MOLECULE_COLUMNS
+    descriptor_names=load_rdkit_descriptor_names()
+    outputs=[args.output_dir/f"train-rdkitfeature-{column}.json" for column in columns]
+    protected_outputs(outputs,args.overwrite)
+    data=load_training_data(args.data_dir)
+    for column,output in zip(columns,outputs):
+        lookup={}
+        for raw in data[column].astype(str):
+            mol=Chem.MolFromSmiles(raw)
+            if mol is None: raise ValueError(f"Invalid SMILES in {column}: {raw}")
+            canonical=Chem.MolToSmiles(mol,isomericSmiles=True,canonical=True)
+            for smiles in canonical.split("."):
+                if smiles not in lookup:
+                    component=Chem.MolFromSmiles(smiles)
+                    lookup[smiles]=calculate_manuscript_rdkit_descriptors(component,descriptor_names)
+        output.write_text(json.dumps(lookup),encoding="utf-8")
+        print(f"{column}: {len(lookup)} unique components -> {output}")
 
-def canonize(smi):
-    return Chem.MolToSmiles(Chem.MolFromSmiles(smi), isomericSmiles=True, canonical=True)
-
-dataset_dir = '../data'   # Change this to your dataset directory
-
-train_df_round1 = pd.read_csv(f'{dataset_dir}/round1_train_data.csv')
-train_df_round2 = pd.read_csv(f'{dataset_dir}/round2_train_data.csv')
-
-train_df_round1['rxntype'] = 1
-
-train_df = pd.concat([train_df_round1, train_df_round2])
-
-print(f'Training set size: {len(train_df)}')
-
-grouped=train_df.groupby('rxntype')
-train_df_dict = {rxntype: group for rxntype, group in grouped}
-
-columns=['Reactant1','Reactant2','Product','Additive','Solvent']
-target_columns = ['Yield'] # list of names of the columns containing targets
-
-n_rxn=8
-
-# fp=MordredFingerprint(n_jobs=-1)
-fp=featurizers_rdkit()
-
-columns=['Reactant1','Reactant2','Product','Additive','Solvent']
-icol=0
-for col in columns:
-    print(f"Treating {col}")
-    smiles=train_df[col].tolist()
-    smi_set=set()
-    smi_dict={}
-    for smi in smiles[:]:
-        smi=canonize(smi)
-        smislist=[smi]
-        if smi.count('.')>0:
-            smislist=smi.split('.')
-        for itemsmi in smislist:
-            smi_set.add(itemsmi)
-
-    smi_list=list(smi_set)
-    features=fp.transform(smi_list)
-    for i in range(len(smi_list)):
-        smi_dict[smi_list[i]]=features[i].tolist()
-
-    savepath=r'../data/extra-mordred/'
-    savepath=r'../data/extra-rdkit/'
-    os.makedirs(savepath,exist_ok=True)
-    with open(os.path.join(savepath,f"train-rdkitfeature-{col}.json"), 'w') as json_file:
-        json.dump(smi_dict, json_file)
-
+if __name__=="__main__": main()

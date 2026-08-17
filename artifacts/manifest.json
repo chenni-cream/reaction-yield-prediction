@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "release": "v1.0.0-manuscript",
+  "paper_model": "simple_average",
+  "repository": "chenni-cream/reaction-yield-prediction",
+  "status": "ready_for_release_upload",
+  "artifacts": [
+    {
+      "name": "Avalon fingerprint models",
+      "filename": "avalon_fingerprint_models.tar.gz",
+      "size": 1228585096,
+      "sha256": "10259aeed074ce8a941081adcc21e6d80bfca1295db2aa099dd52450e67ad1c3",
+      "url": "https://github.com/chenni-cream/reaction-yield-prediction/releases/download/v1.0.0-manuscript/avalon_fingerprint_models.tar.gz",
+      "target": "model_training/ckpt-searchfp/AvalonFingerprint_lgbm",
+      "oof_only": false
+    },
+    {
+      "name": "Avalon OOF predictions",
+      "filename": "avalon_oof_predictions.tar.gz",
+      "size": 334263,
+      "sha256": "edb7068eed27c1ce84e5468a4505312457dec9cc40486bdd81f602fb72a1f65a",
+      "url": "https://github.com/chenni-cream/reaction-yield-prediction/releases/download/v1.0.0-manuscript/avalon_oof_predictions.tar.gz",
+      "target": "model_training/ckpt-optuna/Avalon_FP",
+      "oof_only": true
+    },
+    {
+      "name": "Avalon fingerprint + RDKit models",
+      "filename": "avalon_rdkit_models.tar.gz",
+      "size": 369227394,
+      "sha256": "eaf93d3fa80ddd518f58780bd5f02641102f797c097d53b69daf60bd24f552b9",
+      "url": "https://github.com/chenni-cream/reaction-yield-prediction/releases/download/v1.0.0-manuscript/avalon_rdkit_models.tar.gz",
+      "target": "model_training/ckpt-optuna/Avalon_RDKit",
+      "oof_only": false
+    },
+    {
+      "name": "Layered fingerprint + RDKit + QC + solvent models",
+      "filename": "layered_rdkit_qc_solvent_models.tar.gz",
+      "size": 387179772,
+      "sha256": "78809003e06225dc9148e5ee6e8ce84ace361fcc96f2ca5d17a006f8ef4ebd9f",
+      "url": "https://github.com/chenni-cream/reaction-yield-prediction/releases/download/v1.0.0-manuscript/layered_rdkit_qc_solvent_models.tar.gz",
+      "target": "model_training/ckpt-optuna/Layered_RDKit_QC_Solvent",
+      "oof_only": false
+    }
+  ]
+}

@@ -347,6 +347,7 @@ def main() -> None:
     }
 
     all_start = perf_counter()
+    failures = []
     fp_iter = fingerprint_list
     if HAS_TQDM:
         fp_iter = tqdm(fingerprint_list, desc="Fingerprint", leave=True)
@@ -380,7 +381,8 @@ def main() -> None:
                     f"MAE Mean: {summary_row['mae_mean']:.6f}"
                 )
             except Exception as exc:
-                print(f"[跳过] {fp_name} | rxntype={rxntype} 失败: {exc}")
+                print(f"[失败] {fp_name} | rxntype={rxntype}: {exc}")
+                failures.append(f"{fp_name}/rxn_{rxntype}: {exc}")
 
         fold_df = pd.DataFrame(fold_records)
         summary_df = pd.DataFrame(summary_records)
@@ -388,6 +390,12 @@ def main() -> None:
         fold_df.to_csv(fp_output_dir / "cv_fold_metrics.csv", index=False)
         summary_df.to_csv(fp_output_dir / "cv_summary_metrics.csv", index=False)
         print(f"已保存目录: {fp_output_dir}")
+
+    if failures:
+        details = "\n  - ".join(failures)
+        raise RuntimeError(
+            "一个或多个必需的指纹模型训练失败，检查点不完整：\n  - " + details
+        )
 
     print(f"\n全部训练完成，总耗时: {perf_counter() - all_start:.2f}s")
 
