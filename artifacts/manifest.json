@@ -3,7 +3,7 @@
   "release": "v1.0.0-manuscript",
   "paper_model": "simple_average",
   "repository": "chenni-cream/reaction-yield-prediction",
-  "status": "ready_for_release_upload",
+  "status": "published",
   "artifacts": [
     {
       "name": "Avalon fingerprint models",
@@ -39,6 +39,15 @@
       "sha256": "78809003e06225dc9148e5ee6e8ce84ace361fcc96f2ca5d17a006f8ef4ebd9f",
       "url": "https://github.com/chenni-cream/reaction-yield-prediction/releases/download/v1.0.0-manuscript/layered_rdkit_qc_solvent_models.tar.gz",
       "target": "model_training/ckpt-optuna/Layered_RDKit_QC_Solvent",
+      "oof_only": false
+    },
+    {
+      "name": "Precomputed Product RDKit descriptors",
+      "filename": "rdkit_product_features.tar.gz",
+      "size": 63702479,
+      "sha256": "4f4711f0dc0e8eeda50013b59ba3e1cfe8117a931cdf84e3808dde46594f0e9c",
+      "url": "https://github.com/chenni-cream/reaction-yield-prediction/releases/download/v1.0.0-manuscript/rdkit_product_features.tar.gz",
+      "target": "data/extra-rdkit/train-rdkitfeature-Product.json",
       "oof_only": false
     }
   ]

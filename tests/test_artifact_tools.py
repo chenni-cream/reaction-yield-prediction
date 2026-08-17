@@ -22,6 +22,9 @@ class ArtifactToolTests(unittest.TestCase):
     def test_inference_validation_does_not_require_oof(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
+            product_features = root / "data/extra-rdkit/train-rdkitfeature-Product.json"
+            product_features.parent.mkdir(parents=True, exist_ok=True)
+            product_features.write_text("{}")
             avalon = root / "model_training/ckpt-searchfp/AvalonFingerprint_lgbm"
             optuna = root / "model_training/ckpt-optuna"
             for rxn in REACTIONS:

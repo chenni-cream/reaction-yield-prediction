@@ -29,6 +29,7 @@ def validate(mode: str = "full", load_models: bool = False) -> list[str]:
     if mode not in {"inference", "full"}:
         raise ValueError("mode must be 'inference' or 'full'")
     errors: list[str] = []
+    require(ROOT / "data/extra-rdkit/train-rdkitfeature-Product.json", errors)
     avalon = ROOT / "model_training/ckpt-searchfp/AvalonFingerprint_lgbm"
     optuna = ROOT / "model_training/ckpt-optuna"
     models = list(model_paths(avalon, optuna))

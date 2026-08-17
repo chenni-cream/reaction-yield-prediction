@@ -33,6 +33,7 @@ Split entry (parts must appear in concatenation order):
 }
 ```
 
-The current `manifest.json` records the packaged `v1.0.0-manuscript` assets. Upload all
-four archives plus `SHA256SUMS` without renaming them, then test both full and
-inference-only downloads from a clean checkout before publishing the release.
+The current `manifest.json` records the published `v1.0.0-manuscript` assets: four model/OOF
+archives and the precomputed Product RDKit descriptor archive. `SHA256SUMS` is also attached
+to the Release for manual verification. Test both full and inference-only downloads from a
+clean checkout whenever an asset is replaced.

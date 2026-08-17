@@ -32,7 +32,8 @@ Pooled Test R²: 0.439021
 
 ### Level 2: download pretrained models and rerun inference
 
-The downloader is implemented, but the manifest URLs and checksums must be populated after the `v1.0.0-manuscript` GitHub Release is created:
+The published `v1.0.0-manuscript` Release contains the three inference model groups and
+the precomputed Product RDKit descriptors required to reproduce the released predictions:
 
 ```bash
 python scripts/download_pretrained_models.py --inference-only
@@ -115,7 +116,9 @@ model_training/
     └── Layered_RDKit_QC_Solvent/
 ```
 
-Checkpoint directories are intentionally excluded from normal Git history. The minimal release artifact set is approximately 5.9 GB; see `CODE_RELEASE_PLAN.md` for the packaging and GitHub Release procedure.
+Checkpoint directories and the large Product descriptor lookup are intentionally excluded
+from normal Git history. They are downloaded from the GitHub Release by
+`scripts/download_pretrained_models.py`; see `CODE_RELEASE_PLAN.md` for the packaging procedure.
 
 ## Results
 
