@@ -1,0 +1,12 @@
+# Optional QC feature generation and historical experiments.
+-r requirements.txt
+
+# Psi4/xTB are external runtimes and must be installed separately.
+morfeus-ml==0.8.0
+networkx==3.6.1
+psikit==0.2.0
+
+# Historical model-comparison and SHAP scripts.
+xgboost==3.4.1
+catboost==1.2.10
+shap==0.52.0

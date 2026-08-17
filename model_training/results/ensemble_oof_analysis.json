@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "purpose": "exploratory_analysis_only",
+  "selection_data": "training_oof_only",
+  "final_manuscript_method": "simple_average",
+  "simple_average_weights": [
+    0.3333333333333333,
+    0.3333333333333333,
+    0.3333333333333333
+  ],
+  "model_order": [
+    "Avalon",
+    "Avalon+RDKit",
+    "Layered+NonFP"
+  ],
+  "reactions": {
+    "1": {
+      "name": "C–N",
+      "n_samples": 23538,
+      "simple_average_oof_r2": 0.363503019469675,
+      "adaptive_weights": [
+        0.30931484854809865,
+        0.13225590259717032,
+        0.558429248854731
+      ],
+      "oof_r2_per_model": [
+        0.3336101695793612,
+        0.35349410717300267,
+        0.3565647897573879
+      ],
+      "adaptive_weighted_oof_r2": 0.3641923926131464,
+      "adaptive_minus_simple_r2": 0.0006893731434713946
+    },
+    "2": {
+      "name": "Suzuki",
+      "n_samples": 14455,
+      "simple_average_oof_r2": 0.38504174046528405,
+      "adaptive_weights": [
+        0.2723357769945076,
+        0.12392978579158381,
+        0.6037344372139085
+      ],
+      "oof_r2_per_model": [
+        0.3455169924069761,
+        0.375221416790687,
+        0.37951915814275305
+      ],
+      "adaptive_weighted_oof_r2": 0.38599243133185035,
+      "adaptive_minus_simple_r2": 0.000950690866566295
+    },
+    "3": {
+      "name": "Heck",
+      "n_samples": 5423,
+      "simple_average_oof_r2": 0.3497100885312525,
+      "adaptive_weights": [
+        0.32078584988228914,
+        0.24249470728062106,
+        0.4367194428370898
+      ],
+      "oof_r2_per_model": [
+        0.3084556523604546,
+        0.33651663194428205,
+        0.33779662031026303
+      ],
+      "adaptive_weighted_oof_r2": 0.3498648711668785,
+      "adaptive_minus_simple_r2": 0.00015478263562596073
+    },
+    "4": {
+      "name": "Diels-Alder",
+      "n_samples": 3292,
+      "simple_average_oof_r2": 0.39065939303782715,
+      "adaptive_weights": [
+        0.3453666474488885,
+        0.4868203592450741,
+        0.1678129933060374
+      ],
+      "oof_r2_per_model": [
+        0.3575600723104607,
+        0.38063361463400724,
+        0.3721964366675594
+      ],
+      "adaptive_weighted_oof_r2": 0.3911293399289607,
+      "adaptive_minus_simple_r2": 0.0004699468911335547
+    },
+    "5": {
+      "name": "SNAr",
+      "n_samples": 6919,
+      "simple_average_oof_r2": 0.45770336757851493,
+      "adaptive_weights": [
+        0.26962207942452204,
+        0.2590681715874247,
+        0.4713097489880534
+      ],
+      "oof_r2_per_model": [
+        0.4143421907046557,
+        0.44878909781595555,
+        0.4501633887903983
+      ],
+      "adaptive_weighted_oof_r2": 0.45818279483923885,
+      "adaptive_minus_simple_r2": 0.00047942726072391917
+    },
+    "6": {
+      "name": "Sonogashira",
+      "n_samples": 10465,
+      "simple_average_oof_r2": 0.3191703457076599,
+      "adaptive_weights": [
+        0.1886813518571232,
+        0.21770194701573578,
+        0.593616701127141
+      ],
+      "oof_r2_per_model": [
+        0.2469437608984133,
+        0.3141204445299829,
+        0.3164716171340588
+      ],
+      "adaptive_weighted_oof_r2": 0.3222028752053867,
+      "adaptive_minus_simple_r2": 0.0030325294977268102
+    },
+    "7": {
+      "name": "Michael",
+      "n_samples": 6820,
+      "simple_average_oof_r2": 0.40714013233992896,
+      "adaptive_weights": [
+        0.17941266093802435,
+        0.2965456056742903,
+        0.5240417333876854
+      ],
+      "oof_r2_per_model": [
+        0.355739294812774,
+        0.40404038062200665,
+        0.4050359371843314
+      ],
+      "adaptive_weighted_oof_r2": 0.409202907023569,
+      "adaptive_minus_simple_r2": 0.002062774683640023
+    },
+    "8": {
+      "name": "Amidation",
+      "n_samples": 25940,
+      "simple_average_oof_r2": 0.3929734608821407,
+      "adaptive_weights": [
+        0.4007952287386902,
+        0.19657738079659906,
+        0.4026273904647106
+      ],
+      "oof_r2_per_model": [
+        0.37374011531564866,
+        0.38241905914221364,
+        0.3806434095292237
+      ],
+      "adaptive_weighted_oof_r2": 0.3932846719590217,
+      "adaptive_minus_simple_r2": 0.000311211076881035
+    }
+  },
+  "summary": {
+    "n_samples": 96852,
+    "macro_simple_average_oof_r2": 0.3832376935015354,
+    "macro_adaptive_weighted_oof_r2": 0.3842565355085065,
+    "pooled_simple_average_oof_r2": 0.4102485224157101,
+    "pooled_adaptive_weighted_oof_r2": 0.41110851840921847
+  }
+}

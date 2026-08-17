@@ -396,7 +396,7 @@ def train_best_and_save(X, y, rxntype, config_name, best_params, output_root):
     rxn_dir.mkdir(parents=True, exist_ok=True)
 
     kf = KFold(n_splits=N_FOLDS, shuffle=True, random_state=42)
-    oof_preds = np.zeros(len(y), dtype=np.float32)
+    oof_preds = np.full(len(y), np.nan, dtype=np.float64)
     fold_rows = []
 
     for fold, (train_idx, val_idx) in enumerate(kf.split(X), 1):
@@ -428,6 +428,12 @@ def train_best_and_save(X, y, rxntype, config_name, best_params, output_root):
         })
         print(f"    fold {fold}: R2={r2:.6f} RMSE={rmse:.6f} "
               f"iter={model.best_iteration_} ({fold_rows[-1]['seconds']}s)")
+
+    if not np.isfinite(oof_preds).all():
+        missing_count = int((~np.isfinite(oof_preds)).sum())
+        raise RuntimeError(
+            f"rxn_{rxntype}/{config_name} 有 {missing_count} 个样本缺少有效 OOF 预测"
+        )
 
     # 保存 OOF 预测
     np.save(str(rxn_dir / "oof_predictions.npy"), oof_preds)
@@ -474,10 +480,15 @@ def main():
         rxn_df = rxn_groups[rxntype]
         try:
             rdkit_arr = load_rdkit_features(rdkit_dir, rxntype)
-        except FileNotFoundError:
-            continue
+        except FileNotFoundError as exc:
+            raise FileNotFoundError(
+                f"rxn_{rxntype} 缺少最终训练必需的 RDKit 特征"
+            ) from exc
         if rdkit_arr.shape[0] != len(rxn_df):
-            continue
+            raise ValueError(
+                f"rxn_{rxntype} RDKit 特征行数 {rdkit_arr.shape[0]} "
+                f"与训练样本数 {len(rxn_df)} 不一致"
+            )
 
         avalon_feats = build_avalon_features(rxn_df)
         layered_feats = build_layered_features(rxn_df)
@@ -513,8 +524,7 @@ def main():
         d = rxn_data[rxntype]
         rxn_model_dir = baseline_model_root / f"rxn_{rxntype}"
         if not rxn_model_dir.exists():
-            print(f"  [跳过] rxntype={rxntype}: 模型目录不存在")
-            continue
+            raise FileNotFoundError(f"Avalon 基线模型目录不存在: {rxn_model_dir}")
 
         print(f"\n  rxntype={rxntype}, n={d['n']}")
 
@@ -522,14 +532,13 @@ def main():
         y = d["y"]
 
         kf = KFold(n_splits=N_FOLDS, shuffle=True, random_state=42)
-        oof_preds = np.zeros(len(y), dtype=np.float32)
+        oof_preds = np.full(len(y), np.nan, dtype=np.float64)
         fold_rows = []
 
         for fold, (train_idx, val_idx) in enumerate(kf.split(X), 1):
             model_path = rxn_model_dir / f"lgbm_fold{fold}.txt"
             if not model_path.exists():
-                print(f"    [跳过] fold {fold}: 模型文件不存在")
-                continue
+                raise FileNotFoundError(f"Avalon 基线 fold 模型不存在: {model_path}")
 
             booster = lgb.Booster(model_file=str(model_path))
             preds = booster.predict(X[val_idx])
@@ -544,6 +553,16 @@ def main():
                 "r2": r2, "rmse": rmse, "mae": mae,
             })
             print(f"    fold {fold}: R2={r2:.6f} RMSE={rmse:.6f}")
+
+        if len(fold_rows) != N_FOLDS:
+            raise RuntimeError(
+                f"rxn_{rxntype} 只完成了 {len(fold_rows)}/{N_FOLDS} 个 Avalon folds"
+            )
+        if not np.isfinite(oof_preds).all():
+            missing_count = int((~np.isfinite(oof_preds)).sum())
+            raise RuntimeError(
+                f"rxn_{rxntype} 有 {missing_count} 个样本缺少有效 Avalon OOF 预测"
+            )
 
         # 保存 OOF
         oof_dir = output_root / config_a_name / f"rxn_{rxntype}"
